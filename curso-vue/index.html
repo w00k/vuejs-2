@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Curso Basico de Vue.js | Platzi</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- directivas v-bind, herramientas de vue para poder definir diferentes comportamientos -->
+    <img v-bind:src="img" v-bind:alt="name"> 
+    <h1>
+      {{ name }}
+      <!-- directivas condicionales cuando se cumple una determianda condicion, se elimina el elemento del DOM -->
+      <span v-if="changePercent > 0">Good!!!</span>
+      <span v-else>Bad!!!</span>
+
+      <!-- oculta los elementos, mas peformante en el DOM-->
+      <span v-show="changePercent > 0">Good</span>
+      <span v-show="changePercent < 0">Bad</span>
+      <span v-show="changePercent == 0">equals</span>
+    </h1>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
