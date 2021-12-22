@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Curso Basico de Vue.js | Platzi</title>
+  <title>Mis Curso en Vue.js | Platzi</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -14,21 +14,30 @@
       Mis Cursos de Platzi💚
     </h1>
       <p>
-        <input type="text" placeholder="Titulo del curso"/>
+        <input type="text" placeholder="Titulo del curso" v-model="courseName"/>
       </p>
       <p>
-        <input type="number" placeholder="Horas"/>
+        <input type="number" placeholder="Horas" v-model="courseHours"/>
       </p>
       <p>
-        <button>Guardar Curso</button>
+        <button v-on:click="addCourse">Guardar Curso</button>
       </p>
     </fieldset>
     <div>
       <h3>Lista de Cursos</h3>
-      <p class="red">Aun no has realizado cursos</p>
+      <p class="red" v-show="showAlert">Aun no has realizado cursos</p>
+      <p class="red" v-show="showCourseReapeat">Estas ingresando un curso repetido</p>
+      <p class="red" v-show="showNameEmpty">No estas ingresando un nombre</p>
+      <p class="red" v-show="showHoursMinus">Estas ingresando horas negativas</p>
       <div>
         <ol>
           <!-- Lista de cursos -->
+          <ul>
+            <li 
+            v-for="c in courses">
+            Curso {{c.name}}, horas {{c.hours}}
+          </li>
+          </ul>
         </ol>
         <hr/>
         <p>
