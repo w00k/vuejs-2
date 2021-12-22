@@ -24,8 +24,14 @@
       -->
     </h1>
 
+    <!-- la propiedad más importante, que nos permite generar el two way data binding-->
+    <input type="number" v-model="value">
+
     <!-- evento click con directiva -->
     <span v-on:click="toggleShowPrices">{{ showPrices ? 'Ocultar precios' : 'Ver precios'}}</span>
+
+    <!-- muestro el valor de value -->
+    <span>{{convertedValue}}</span>
     
     <!-- ciclo for -->
     <ul v-show=showPrices>
