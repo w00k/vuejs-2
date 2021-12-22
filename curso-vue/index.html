@@ -12,7 +12,7 @@
     <!-- directivas v-bind, herramientas de vue para poder definir diferentes comportamientos -->
     <img v-on:mouseover="toggleShowPrices" v-on:mouseout="toggleShowPrices" v-bind:src="img" v-bind:alt="name"> 
     <h1 v-bind:class="changePercent > 0 ? 'green' : 'red'">
-     {{ name }}
+     {{ title }} <!-- propiedad computada -->
       <!-- directivas condicionales cuando se cumple una determianda condicion, se elimina el elemento del DOM -->
       <span v-if="changePercent > 0">Good!!!</span>
       <span v-else>Bad!!!</span>
