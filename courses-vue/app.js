@@ -25,13 +25,30 @@ new Vue({
     methods: {
       addCourse() {
         var repetido = Boolean(this.courses.find(element => element.name === this.courseName ? true : false));
+        this.messageHandler(repetido);
         if(this.courseName != null && this.courseName.length > 0 && this.courseHours > 0 && !repetido) {
             this.courses.push({name: this.courseName, hours: this.courseHours});
             this.getTotalTime();
             this.showAlertNoItems();
-            this.showCourseReapeat = false;
-            this.showHoursMinus = false;
-            this.showNameEmpty = false;
+        } 
+      },
+      getTotalTime() {
+        totalTime = 0;
+        this.courses.forEach(element => {
+          totalTime = parseInt(element.hours, 10) + totalTime;
+        });
+        this.totalTime = totalTime;
+      },
+      showAlertNoItems() {
+        if(this.courses.length > 0) {
+          this.showAlert = false;
+        }
+      }, 
+      messageHandler(repetido) {
+        if(this.courseName != null && this.courseName.length > 0 && this.courseHours > 0 && !repetido) {
+          this.showCourseReapeat = false;
+          this.showHoursMinus = false;
+          this.showNameEmpty = false;
         } 
         if(repetido) {
           this.showCourseReapeat = true;
@@ -47,18 +64,6 @@ new Vue({
           this.showNameEmpty = true;
         } else {
           this.showNameEmpty = false;
-        }
-      },
-      getTotalTime() {
-        totalTime = 0;
-        this.courses.forEach(element => {
-          totalTime = parseInt(element.hours, 10) + totalTime;
-        });
-        this.totalTime = totalTime;
-      },
-      showAlertNoItems() {
-        if(this.courses.length > 0) {
-          this.showAlert = false;
         }
       }
     }
