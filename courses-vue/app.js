@@ -24,25 +24,29 @@ new Vue({
     
     methods: {
       addCourse() {
-        if(this.courseName != null && this.courseName.length > 0 && this.courseHours > 0) {
-          var repetido = Boolean(this.courses.find(element => element.name === this.courseName ? true : false));
-          if(!repetido) {
+        var repetido = Boolean(this.courses.find(element => element.name === this.courseName ? true : false));
+        if(this.courseName != null && this.courseName.length > 0 && this.courseHours > 0 && !repetido) {
             this.courses.push({name: this.courseName, hours: this.courseHours});
             this.getTotalTime();
             this.showAlertNoItems();
             this.showCourseReapeat = false;
             this.showHoursMinus = false;
             this.showNameEmpty = false;
-          } else {
-            this.showCourseReapeat = true;
-          } 
+        } 
+        if(repetido) {
+          this.showCourseReapeat = true;
         } else {
-          if(this.courseHours < 0) {
-            this.showHoursMinus = true;
-          } 
-          if(this.courseName === null || this.courseName.length == 0) {
-            this.showNameEmpty = true;
-          }
+          this.showCourseReapeat = false;
+        } 
+        if(this.courseHours < 0) {
+          this.showHoursMinus = true;
+        } else {
+          this.showHoursMinus = false;
+        }
+        if(this.courseName === null || this.courseName.length == 0) {
+          this.showNameEmpty = true;
+        } else {
+          this.showNameEmpty = false;
         }
       },
       getTotalTime() {
