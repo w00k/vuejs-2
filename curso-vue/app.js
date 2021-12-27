@@ -7,8 +7,9 @@ Vue.component('CoinDetail', {
     }
   },
   methods: {
-    toggleShowPrices() {      
-      this.showPrices = !this.showPrices
+    toggleShowPrices() {
+      this.showPrices = !this.showPrices;
+      this.$emit('change-color', this.showPrices ? 'FF96C8' : '3D3D3D'); //evento con change-color
     }
   },
   computed: {
@@ -77,12 +78,9 @@ new Vue({
       color: 'f4f4f4'
     }
   },
-  /*
   methods: {
-    toggleShowPrices() {
-      this.showPrices = !this.showPrices;
-      this.color = this.color.split('').reverse().join('');
+    updateColor(color) {
+      this.color = color || this.color.split('').reverse().join('');
     }
   }
-  */
 })
