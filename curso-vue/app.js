@@ -1,48 +1,88 @@
-new Vue({
-  el: '#app',
-
+Vue.component('CoinDetail', {
+  props: ['coin'],
   data() {
     return {
-      name: 'Bitcoin', 
-      symbol: 'BTC',
-      img: 'https://img.icons8.com/color/480/000000/bitcoin--v3.png',
-      changePercent: 10,
-      value: 0,
-      color: 'f4f4f4',
-      price: 8400,
-      pricesWithDays: [
-        {day: 'Lunes', value: 8400},
-        {day: 'Martes', value: 7900},
-        {day: 'Miercoles', value: 8200},
-        {day: 'Jueves', value: 9000},
-        {day: 'Viernes', value: 9400},
-        {day: 'Sabado', value: 10000},
-        {day: 'Domingo', value: 10200}, 
-      ],
-      showPrices: false
+      showPrices: false,
+      value: 0
     }
-  }, 
+  },
+  methods: {
+    toggleShowPrices() {      
+      this.showPrices = !this.showPrices
+    }
+  },
   computed: {
     title() {
-      return `${this.name} - ${this.symbol}`;
+      return `${this.coin.name} - ${this.coin.symbol}`;
     },
     convertedValue() {
       if(this.value == 0) {
         return 0;
       } 
-      return this.value / this.price;
+      return this.value / this.coin.price;
     }
   },
-  watch: {
-    //watches contiene funciones de lo que posee la función data y tiene que poseer el mismo nombre
-    showPrices(newValue, oldValue) {
-      console.log(newValue, oldValue);
+  template: `
+  <div>
+    <img 
+        v-on:mouseover="toggleShowPrices" 
+        v-on:mouseout="toggleShowPrices" 
+        v-bind:src="coin.img" v-bind:alt="coin.name"> 
+
+    <h1 
+        v-bind:class="coin.changePercent > 0 ? 'green' : 'red'">
+        {{ title }} 
+        <span v-if="coin.changePercent > 0">Good!!!</span>
+        <span v-else>Bad!!!</span>
+        <span v-on:click="toggleShowPrices">{{ showPrices ? 'Ocultar precios' : 'Ver precios'}}</span>
+      </h1>
+
+      <input type="number" v-model="value">
+      <span>{{convertedValue}}</span>
+
+      <ul v-show=showPrices>
+        <li
+        class="uppercase"
+        v-for="(x, i) in coin.pricesWithDays" 
+        v-bind:key="x.day"
+        v-bind:class="{orange: x.value === coin.price, red: x.value < coin.price, green: x.value > coin.price}"
+        >{{i}} - {{x.day}} - {{x.value}}</li>
+      </ul>
+
+  </div>
+  `
+});
+
+new Vue({
+  el: '#app',
+
+  data() {
+    return {
+      btc: {
+        name: 'Bitcoin', 
+        symbol: 'BTC',
+        img: 'https://img.icons8.com/color/480/000000/bitcoin--v3.png',
+        changePercent: 10,
+        price: 8400,
+        pricesWithDays: [
+          {day: 'Lunes', value: 8400},
+          {day: 'Martes', value: 7900},
+          {day: 'Miercoles', value: 8200},
+          {day: 'Jueves', value: 9000},
+          {day: 'Viernes', value: 9400},
+          {day: 'Sabado', value: 10000},
+          {day: 'Domingo', value: 10200}, 
+        ]
+      },
+      color: 'f4f4f4'
     }
   },
+  /*
   methods: {
     toggleShowPrices() {
       this.showPrices = !this.showPrices;
       this.color = this.color.split('').reverse().join('');
     }
   }
+  */
 })

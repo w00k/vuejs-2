@@ -9,41 +9,8 @@
 </head>
 <body>
   <div id="app" v-bind:style="{background: '#' + color}">
-    <!-- directivas v-bind, herramientas de vue para poder definir diferentes comportamientos -->
-    <img v-on:mouseover="toggleShowPrices" v-on:mouseout="toggleShowPrices" v-bind:src="img" v-bind:alt="name"> 
-    <h1 v-bind:class="changePercent > 0 ? 'green' : 'red'">
-     {{ title }} <!-- propiedad computada -->
-      <!-- directivas condicionales cuando se cumple una determianda condicion, se elimina el elemento del DOM -->
-      <span v-if="changePercent > 0">Good!!!</span>
-      <span v-else>Bad!!!</span>
-
-      <!-- oculta los elementos, mas peformante en el DOM
-      <span v-show="changePercent > 0">Good</span>
-      <span v-show="changePercent < 0">Bad</span>
-      <span v-show="changePercent == 0">equals</span>
-      -->
-    </h1>
-
-    <!-- la propiedad más importante, que nos permite generar el two way data binding-->
-    <input type="number" v-model="value">
-
-    <!-- evento click con directiva -->
-    <span v-on:click="toggleShowPrices">{{ showPrices ? 'Ocultar precios' : 'Ver precios'}}</span>
-
-    <!-- muestro el valor de value -->
-    <span>{{convertedValue}}</span>
-    
-    <!-- ciclo for -->
-    <ul v-show=showPrices>
-      <li
-      class="uppercase"
-      v-for="(x, i) in pricesWithDays" 
-      v-bind:key="x.day"
-      v-bind:class="{orange: x.value === price, red: x.value < price, green: x.value > price}"
-      >{{i}} - {{x.day}} - {{x.value}}</li>
-    </ul>
-
-  </div>
+    <!-- component -->
+    <coin-detail v-bind:coin="btc"></coin-detail>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="app.js"></script>
