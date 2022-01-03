@@ -12,7 +12,15 @@
     <!-- component -->
     <coin-detail 
       v-on:change-color="updateColor" 
-      v-bind:coin="btc"></coin-detail>
+      v-bind:coin="btc"
+      >
+      <template v-slot:text>
+        <p>Este es un texto de prueba, para ver el resultado del slot</p>
+      </template>
+      <template v-slot:link>
+        <a href="https://platzi.com">Platzi link</a>
+      </template>
+    </coin-detail>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="app.js"></script>
