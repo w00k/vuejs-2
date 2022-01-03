@@ -6,6 +6,18 @@ Vue.component('CoinDetail', {
       value: 0
     }
   },
+  created() {
+    /*
+    primer evento que se ejecuta, perfecto para poder llamar a api rest u obtener datos del servidor
+    */
+    console.log("Created CointDetail...");
+  },
+  mounted() {
+    /*
+    puedo acceder al dom y elementos HTML que no puedo ingresar con el CREATED
+    */
+    console.log("Mounted CoinDetail...");
+  },
   methods: {
     toggleShowPrices() {
       this.showPrices = !this.showPrices;
@@ -42,6 +54,7 @@ Vue.component('CoinDetail', {
       <span>{{convertedValue}}</span>
 
       <slot name="text"></slot>
+
       <slot name="link"></slot>
 
       <ul v-show=showPrices>
@@ -80,6 +93,20 @@ new Vue({
       },
       color: 'f4f4f4'
     }
+  },
+  created() {
+    /*
+    primer evento que se ejecuta, perfecto para poder llamar a api rest u obtener datos del servidor
+    chequear la documentacion en 
+    https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram
+    */
+    console.log("Created ...");
+  },
+  mounted() {
+    /*
+    puedo acceder al dom y elementos HTML que no puedo ingresar con el CREATED
+    */
+    console.log("Mounted ...");
   },
   methods: {
     updateColor(color) {
