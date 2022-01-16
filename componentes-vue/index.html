@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>MTarea Modal | Platzi</title>
-  <link rel="stylesheet" href="./styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tarea Modal | Platzi</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
     <div id="app">
-        <button>Show Modal</button>
+        <button v-on:click="toggleModal">Show Modal</button>
 
-        <modal></modal>
-    </div>
+        <modal v-show="showModal" v-on:close="toggleModal" v-bind:title="title">
+            <p slot="body">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium, dolore molestiae. Commodi, accusantium enim? Sit pariatur quo laudantium quidem numquam corporis ullam culpa vero fuga fugiat? Dicta dolorum dolorem maiores?
+                <p>
+        </modal>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="app.js"></script>
 </body>
+
 </html>
